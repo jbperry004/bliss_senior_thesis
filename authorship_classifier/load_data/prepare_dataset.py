@@ -5,6 +5,6 @@ from split_data import split_data
 import os
 
 os.chdir("../data")
-#clean_data()
-#sentence_tokenize_corpus()
+clean_data()
+sentence_tokenize_corpus()
 split_data()
