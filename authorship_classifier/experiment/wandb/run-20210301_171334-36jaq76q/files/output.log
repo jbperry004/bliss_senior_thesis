@@ -1,0 +1,17 @@
+  0%|          | 0/824 [00:00<?, ?it/s]/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torchtext/data/batch.py:23: UserWarning: Batch class will be retired soon and moved to torchtext.legacy. Please see the most recent release notes for further information.
+  warnings.warn('{} class will be retired soon and moved to torchtext.legacy. Please see the most recent release notes for further information.'.format(self.__class__.__name__), UserWarning)
+  0%|          | 1/824 [00:00<04:55,  2.79it/s]  0%|          | 2/824 [00:00<04:02,  3.40it/s]  1%|          | 5/824 [00:00<03:00,  4.54it/s]  1%|          | 7/824 [00:00<02:19,  5.87it/s]  1%|          | 9/824 [00:01<02:11,  6.22it/s]  1%|▏         | 11/824 [00:01<01:43,  7.82it/s]  2%|▏         | 14/824 [00:01<01:23,  9.73it/s]  2%|▏         | 16/824 [00:01<01:11, 11.30it/s]  2%|▏         | 18/824 [00:01<01:02, 12.85it/s]  2%|▏         | 20/824 [00:01<00:59, 13.48it/s]  3%|▎         | 22/824 [00:01<00:57, 13.90it/s]  3%|▎         | 23/824 [00:01<01:02, 12.73it/s]
+Traceback (most recent call last):
+  File "experiment.py", line 5, in <module>
+    bytepair_classifier.run_bootstrap(1)
+  File "/Users/blissperry/Desktop/thesis/bliss_senior_thesis/authorship_classifier/experiment/base_classifier.py", line 74, in run_bootstrap
+    classifier.train_all(self.train_iter, self.val_iter, epochs=self.epochs, learning_rate=self.learning_rate)
+  File "/Users/blissperry/Desktop/thesis/bliss_senior_thesis/authorship_classifier/experiment/rnn.py", line 72, in train_all
+    logits = self.forward(batch.text, None)
+  File "/Users/blissperry/Desktop/thesis/bliss_senior_thesis/authorship_classifier/experiment/rnn.py", line 43, in forward
+    output, (h_n, c_n) = self.rnn(packed)
+  File "/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torch/nn/modules/rnn.py", line 585, in forward
+    self.num_layers, self.dropout, self.training, self.bidirectional)
+KeyboardInterrupt

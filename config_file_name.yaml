@@ -1,0 +1,8 @@
+apiKey: c5d0a120b895ad399649c5ad8208ef
+command: pip install -r "requirements.txt" && python3 ./authorship_classifier/experiment/experiment.py
+container: ufoym/deepo:all-py36-jupyter
+ignoreFiles: null
+isPreemptible: false
+machineType: P4000
+name: test round
+projectId: pr2c0o2x3
