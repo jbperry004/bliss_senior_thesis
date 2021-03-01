@@ -1,0 +1,22 @@
+{
+    "os": "Darwin-19.6.0-x86_64-i386-64bit",
+    "python": "3.7.9",
+    "heartbeatAt": "2021-03-01T17:39:17.708862",
+    "startedAt": "2021-03-01T17:39:12.051280",
+    "docker": null,
+    "cpu_count": 4,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "codePath": "authorship_classifier/experiment/experiment.py",
+    "program": "experiment.py",
+    "git": {
+        "remote": "https://github.com/jbperry004/bliss_senior_thesis.git",
+        "commit": "73de643c75831d6f17f0eedcc907a16c36ed7a32"
+    },
+    "email": "jordanperry@college.harvard.edu",
+    "root": "/Users/blissperry/Desktop/thesis/bliss_senior_thesis",
+    "host": "Blisss-MacBook-Pro.local",
+    "username": "blissperry",
+    "executable": "/opt/anaconda3/envs/thesis_tf/bin/python"
+}

@@ -1,0 +1,23 @@
+  0%|          | 0/824 [00:00<?, ?it/s]/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torchtext/data/batch.py:23: UserWarning: Batch class will be retired soon and moved to torchtext.legacy. Please see the most recent release notes for further information.
+  warnings.warn('{} class will be retired soon and moved to torchtext.legacy. Please see the most recent release notes for further information.'.format(self.__class__.__name__), UserWarning)
+  0%|          | 0/824 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "experiment.py", line 4, in <module>
+    bytepair_classifier.run_bootstrap(1)
+  File "/Users/blissperry/Desktop/thesis/bliss_senior_thesis/authorship_classifier/experiment/base_classifier.py", line 73, in run_bootstrap
+    classifier.train_all(self.train_iter, self.val_iter, epochs=self.epochs, learning_rate=self.learning_rate)
+  File "/Users/blissperry/Desktop/thesis/bliss_senior_thesis/authorship_classifier/experiment/rnn.py", line 71, in train_all
+    for batch in tqdm(train_iter):
+  File "/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/tqdm/std.py", line 1165, in __iter__
+    for obj in iterable:
+  File "/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torchtext/data/iterator.py", line 162, in __iter__
+    yield Batch(minibatch, self.dataset, self.device)
+  File "/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torchtext/data/batch.py", line 36, in __init__
+    setattr(self, name, field.process(batch, device=device))
+  File "/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torchtext/data/field.py", line 234, in process
+    tensor = self.numericalize(padded, device=device)
+  File "/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torchtext/data/field.py", line 335, in numericalize
+    arr = [self.vocab.stoi[x] for x in arr]
+  File "/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torchtext/data/field.py", line 335, in <listcomp>
+    arr = [self.vocab.stoi[x] for x in arr]
+AttributeError: 'Field' object has no attribute 'vocab'

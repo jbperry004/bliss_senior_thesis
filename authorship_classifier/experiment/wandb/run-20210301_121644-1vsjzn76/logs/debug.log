@@ -1,0 +1,65 @@
+2021-03-01 12:16:44,797 INFO    MainThread:16337 [wandb_setup.py:_flush():69] setting env: {}
+2021-03-01 12:16:44,797 INFO    MainThread:16337 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-03-01 12:16:44,797 INFO    MainThread:16337 [wandb_init.py:_log_setup():319] Logging user logs to /Users/blissperry/Desktop/thesis/bliss_senior_thesis/authorship_classifier/experiment/wandb/run-20210301_121644-1vsjzn76/logs/debug.log
+2021-03-01 12:16:44,797 INFO    MainThread:16337 [wandb_init.py:_log_setup():320] Logging internal logs to /Users/blissperry/Desktop/thesis/bliss_senior_thesis/authorship_classifier/experiment/wandb/run-20210301_121644-1vsjzn76/logs/debug-internal.log
+2021-03-01 12:16:44,798 INFO    MainThread:16337 [wandb_init.py:init():352] calling init triggers
+2021-03-01 12:16:44,798 INFO    MainThread:16337 [wandb_init.py:init():359] wandb.init called with sweep_config: {}
+config: {}
+2021-03-01 12:16:44,798 INFO    MainThread:16337 [wandb_init.py:init():401] starting backend
+2021-03-01 12:16:44,798 INFO    MainThread:16337 [backend.py:_multiprocessing_setup():71] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2021-03-01 12:16:44,807 INFO    MainThread:16337 [backend.py:ensure_launched():123] starting backend process...
+2021-03-01 12:16:44,814 INFO    MainThread:16337 [backend.py:ensure_launched():128] started backend process with pid: 16347
+2021-03-01 12:16:44,816 INFO    MainThread:16337 [wandb_init.py:init():406] backend started and connected
+2021-03-01 12:16:44,819 INFO    MainThread:16337 [wandb_init.py:init():446] updated telemetry
+2021-03-01 12:16:44,819 INFO    MainThread:16337 [wandb_init.py:init():465] communicating current version
+2021-03-01 12:16:46,286 INFO    MainThread:16337 [wandb_init.py:init():470] got version response 
+2021-03-01 12:16:46,286 INFO    MainThread:16337 [wandb_init.py:init():478] communicating run to backend with 30 second timeout
+2021-03-01 12:16:46,444 INFO    MainThread:16337 [wandb_init.py:init():503] starting run threads in backend
+2021-03-01 12:16:50,032 INFO    MainThread:16337 [wandb_run.py:_console_start():1422] atexit reg
+2021-03-01 12:16:50,033 INFO    MainThread:16337 [wandb_run.py:_redirect():1285] redirect: SettingsConsole.REDIRECT
+2021-03-01 12:16:50,033 INFO    MainThread:16337 [wandb_run.py:_redirect():1290] Redirecting console.
+2021-03-01 12:16:50,033 INFO    MainThread:16337 [redirect.py:install():213] install start
+2021-03-01 12:16:50,034 INFO    MainThread:16337 [redirect.py:install():228] install stop
+2021-03-01 12:16:50,034 INFO    MainThread:16337 [redirect.py:install():213] install start
+2021-03-01 12:16:50,034 INFO    MainThread:16337 [redirect.py:install():228] install stop
+2021-03-01 12:16:50,034 INFO    MainThread:16337 [wandb_run.py:_redirect():1336] Redirects installed.
+2021-03-01 12:16:50,034 INFO    MainThread:16337 [wandb_init.py:init():527] run started, returning control to user process
+2021-03-01 12:16:50,070 INFO    MainThread:16337 [wandb_run.py:_config_callback():669] config_cb None None {'epochs': 15, 'learning_rate': 0.0001, 'embedding_size': 64, 'hidden_size': 32}
+2021-03-01 12:16:50,244 INFO    MainThread:16337 [wandb_run.py:_atexit_cleanup():1392] got exitcode: 1
+2021-03-01 12:16:50,244 INFO    MainThread:16337 [wandb_run.py:_restore():1364] restore
+2021-03-01 12:16:50,244 INFO    MainThread:16337 [redirect.py:uninstall():232] uninstall start
+2021-03-01 12:16:50,244 INFO    MainThread:16337 [redirect.py:_stop():287] _stop: stdout
+2021-03-01 12:16:50,245 INFO    stdout    :16337 [redirect.py:_pipe_relay():129] relay done saw last write: stdout
+2021-03-01 12:16:50,245 INFO    MainThread:16337 [redirect.py:_stop():293] _stop closed: stdout
+2021-03-01 12:16:50,245 INFO    stdout    :16337 [redirect.py:_pipe_relay():145] relay done done: stdout
+2021-03-01 12:16:50,246 INFO    MainThread:16337 [redirect.py:_stop():299] _stop joined: stdout
+2021-03-01 12:16:50,246 INFO    MainThread:16337 [redirect.py:_stop():301] _stop rd closed: stdout
+2021-03-01 12:16:50,246 INFO    MainThread:16337 [redirect.py:uninstall():236] uninstall done
+2021-03-01 12:16:50,246 INFO    MainThread:16337 [redirect.py:uninstall():232] uninstall start
+2021-03-01 12:16:50,246 INFO    MainThread:16337 [redirect.py:_stop():287] _stop: stderr
+2021-03-01 12:16:50,246 INFO    MainThread:16337 [redirect.py:_stop():293] _stop closed: stderr
+2021-03-01 12:16:50,246 INFO    stderr    :16337 [redirect.py:_pipe_relay():129] relay done saw last write: stderr
+2021-03-01 12:16:50,246 INFO    stderr    :16337 [redirect.py:_pipe_relay():145] relay done done: stderr
+2021-03-01 12:16:50,246 INFO    MainThread:16337 [redirect.py:_stop():299] _stop joined: stderr
+2021-03-01 12:16:50,246 INFO    MainThread:16337 [redirect.py:_stop():301] _stop rd closed: stderr
+2021-03-01 12:16:50,246 INFO    MainThread:16337 [redirect.py:uninstall():236] uninstall done
+2021-03-01 12:16:50,450 INFO    MainThread:16337 [wandb_run.py:_wait_for_finish():1515] got exit ret: file_counts {
+  wandb_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 767
+  total_bytes: 767
+}
+
+2021-03-01 12:16:52,457 INFO    MainThread:16337 [wandb_run.py:_wait_for_finish():1515] got exit ret: done: true
+exit_result {
+}
+file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 5613
+  total_bytes: 5613
+}
+
+2021-03-01 12:16:53,749 INFO    MainThread:16337 [wandb_run.py:_show_files():1737] logging synced files

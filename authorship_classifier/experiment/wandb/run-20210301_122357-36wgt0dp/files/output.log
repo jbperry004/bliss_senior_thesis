@@ -1,0 +1,141 @@
+  0%|          | 0/824 [00:00<?, ?it/s]/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torchtext/data/batch.py:23: UserWarning: Batch class will be retired soon and moved to torchtext.legacy. Please see the most recent release notes for further information.
+  warnings.warn('{} class will be retired soon and moved to torchtext.legacy. Please see the most recent release notes for further information.'.format(self.__class__.__name__), UserWarning)
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  0%|          | 1/824 [00:00<03:19,  4.12it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  0%|          | 4/824 [00:00<02:32,  5.38it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  1%|          | 6/824 [00:00<02:04,  6.56it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  1%|          | 8/824 [00:00<01:40,  8.13it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  1%|▏         | 11/824 [00:00<01:21,  9.92it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  2%|▏         | 14/824 [00:00<01:09, 11.68it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  2%|▏         | 16/824 [00:01<01:22,  9.82it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  2%|▏         | 18/824 [00:01<01:10, 11.49it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  2%|▏         | 20/824 [00:01<01:04, 12.39it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  3%|▎         | 22/824 [00:01<01:05, 12.19it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  3%|▎         | 25/824 [00:01<00:58, 13.74it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  3%|▎         | 28/824 [00:01<00:51, 15.48it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  4%|▎         | 30/824 [00:02<00:52, 15.00it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  4%|▍         | 33/824 [00:02<00:52, 15.14it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  4%|▍         | 36/824 [00:02<00:46, 16.98it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  5%|▍         | 39/824 [00:02<00:41, 18.87it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  5%|▌         | 42/824 [00:02<00:40, 19.42it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  5%|▌         | 45/824 [00:02<00:42, 18.49it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  6%|▌         | 48/824 [00:02<00:39, 19.75it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  6%|▌         | 51/824 [00:03<00:44, 17.45it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  6%|▋         | 53/824 [00:03<00:44, 17.41it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  7%|▋         | 55/824 [00:03<00:42, 18.07it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  7%|▋         | 58/824 [00:03<00:45, 16.84it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  7%|▋         | 60/824 [00:03<00:46, 16.44it/s]<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  8%|▊         | 62/824 [00:04<00:55, 13.66it/s]
+Traceback (most recent call last):
+  File "experiment.py", line 4, in <module>
+    bytepair_classifier.run_bootstrap(1)
+  File "/Users/blissperry/Desktop/thesis/bliss_senior_thesis/authorship_classifier/experiment/base_classifier.py", line 75, in run_bootstrap
+    classifier.train_all(self.train_iter, self.val_iter, epochs=self.epochs, learning_rate=self.learning_rate)
+  File "/Users/blissperry/Desktop/thesis/bliss_senior_thesis/authorship_classifier/experiment/rnn.py", line 76, in train_all
+    loss.backward()
+  File "/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torch/tensor.py", line 221, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torch/autograd/__init__.py", line 132, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+KeyboardInterrupt

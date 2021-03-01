@@ -1,0 +1,23 @@
+  0%|          | 0/824 [00:00<?, ?it/s]/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torchtext/data/batch.py:23: UserWarning: Batch class will be retired soon and moved to torchtext.legacy. Please see the most recent release notes for further information.
+  warnings.warn('{} class will be retired soon and moved to torchtext.legacy. Please see the most recent release notes for further information.'.format(self.__class__.__name__), UserWarning)
+<class 'torch.Tensor'>
+<class 'torch.Tensor'>
+  0%|          | 0/824 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "experiment.py", line 4, in <module>
+    bytepair_classifier.run_bootstrap(1)
+  File "/Users/blissperry/Desktop/thesis/bliss_senior_thesis/authorship_classifier/experiment/base_classifier.py", line 75, in run_bootstrap
+    classifier.train_all(self.train_iter, self.val_iter, epochs=self.epochs, learning_rate=self.learning_rate)
+  File "/Users/blissperry/Desktop/thesis/bliss_senior_thesis/authorship_classifier/experiment/rnn.py", line 75, in train_all
+    loss = self.compute_loss(logits, batch.author)
+  File "/Users/blissperry/Desktop/thesis/bliss_senior_thesis/authorship_classifier/experiment/rnn.py", line 53, in compute_loss
+    loss = self.loss_criterion(logits, ground_truth.type_as(logits))
+  File "/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torch/nn/modules/loss.py", line 962, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torch/nn/functional.py", line 2468, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/opt/anaconda3/envs/thesis_tf/lib/python3.7/site-packages/torch/nn/functional.py", line 2264, in nll_loss
+    ret = torch._C._nn.nll_loss(input, target, weight, _Reduction.get_enum(reduction), ignore_index)
+RuntimeError: expected scalar type Long but found Float
