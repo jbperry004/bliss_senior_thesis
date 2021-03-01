@@ -59,6 +59,14 @@ APOLOGY_CORPUS_LEMMA_CONCAT_FILE_NAME = "./data/greek_corpus_apology_lemma_conca
 DOCUMENT_PATH = "./data/documents/"
 DOCUMENT_PATH_LEMMA = "./data/documents_lemma/"
 
+AUTHORS_PATH = './data/authors/'
+AUTHORS_PATH_LEMMA = './data/authors_lemma/'
+
+TEXT_STATISTICS_AUTHORS = './statistics/authors.csv'
+TEXT_STATISTICS_SPLITS = './statistics/splits.csv'
+
+np.random.seed(300)
+
 class TextLoader():
     def __init__(self):
         self.sent_tokenizer = SentenceTokenizer()
@@ -114,6 +122,14 @@ class TextLoader():
                     sent = self.strip_accents_from_sentence(sent)
                 f.write(sent)
                 f.write("\n")
+    
+    def append_txt(self, filename, examples, strip_accents=True):
+        with open(filename, 'a') as f:   
+            for sent in examples:
+                if strip_accents:
+                    sent = self.strip_accents_from_sentence(sent)
+                f.write(sent)
+                f.write("\n")
 
     def read_txt(self, filename):
         lines = []
@@ -138,12 +154,7 @@ class TextLoader():
             with open(out_filename, 'w') as f_out:
                 csv_writer = csv.writer(f_out, delimiter='\t')
                 for line, label in zip(f_in, labels):
-                    print(line.strip(), label)
                     csv_writer.writerow([line.strip(), label.strip()])
-
-    def calculate_top_tfidf_words(self):
-        tfidf = self.tfidf_vectorizer.fit_transform(os.listdir(DOCUMENT_PATH))
-        print(tfidf)
 
     def load_corpus(self): 
         authors = []
@@ -151,29 +162,67 @@ class TextLoader():
         authors_apology = []
         sentences_apology = []
         titles = []
+        titles_to_authors = {}
+        author_to_csv = {
+            'plato': 'Plato',
+            'xenophon': 'Xenophon'
+        }
 
         documents = {}
         for doc in self.corpus_reader.docs():
             if doc['author'] in ['plato', 'xenophon']:
                 document = []
+                if doc['englishTitle'] == 'Apology':
+                    title = f"{doc['englishTitle']} ({author_to_csv[doc['author']]})"
+                else:
+                    title = doc['englishTitle']
+                titles_to_authors[title] = author_to_csv[doc['author']]
                 for sent in self.process_document(doc):
                     if doc['englishTitle'] in ['Apology']:
                         authors_apology.append(doc['author'])
                         sentences_apology.append(sent)
                         document.append(sent)
+                        titles.append(title)
                     else:
                         sentences.append(sent)
                         authors.append(doc['author'])
-                        titles.append(doc['englishTitle'])
+                        titles.append(title)
                         document.append(sent)
-                documents[f"{doc['englishTitle'].replace(' ', '')}_{doc['author']}"] = document
-
-        for title, document in documents.items():
-            self.write_txt(DOCUMENT_PATH + title + ".txt", document)
-            self.write_txt(DOCUMENT_PATH_LEMMA + title + ".txt", self.lemmatize(document))
+                documents[title] = document
+        
+        titles = Counter(titles)
+        with open(TEXT_STATISTICS_AUTHORS, 'w') as f:
+            csv_writer = csv.writer(f, delimiter=',')
+            csv_writer.writerow(['Work', 'Author', 'Sentences'])
+            for title, count in titles.most_common():
+                csv_writer.writerow([title, titles_to_authors[title], count])
 
         sentences_train, sentences_test, authors_train, authors_test = train_test_split(sentences, authors, test_size=0.20, stratify=authors)
         sentences_valid, sentences_test, authors_valid, authors_test = train_test_split(sentences_test, authors_test, test_size=0.50, stratify=authors_test)
+
+        sentences_train_plato = np.array(sentences_train)[np.array(authors_train) == 'plato']
+        sentences_train_xenophon = np.array(sentences_train)[np.array(authors_train) == 'xenophon']
+
+        self.write_txt(AUTHORS_PATH + '/Plato.txt', sentences_train_plato.tolist())
+        self.write_txt(AUTHORS_PATH_LEMMA + '/Plato.txt', self.lemmatize(sentences_train_plato.tolist()))
+        self.write_txt(AUTHORS_PATH + '/Xenophon.txt', sentences_train_xenophon.tolist())
+        self.write_txt(AUTHORS_PATH_LEMMA + '/Xenophon.txt', self.lemmatize(sentences_train_xenophon.tolist()))
+
+        total_count = Counter(authors + authors_apology)
+
+        train_count = Counter(authors_train)
+        valid_count = Counter(authors_valid)
+        test_count = Counter(authors_test)
+        apologies_count = Counter(authors_apology)
+
+        with open(TEXT_STATISTICS_SPLITS, 'w') as f:
+            csv_writer = csv.writer(f, delimiter=',')
+            csv_writer.writerow(['Set', 'Plato', 'Xenophon', 'Majority Percentage'])
+            csv_writer.writerow(['Training', train_count['plato'], train_count['xenophon'], max(train_count['plato'] / len(authors_train), 1 - (train_count['plato'] / len(authors_train)))])
+            csv_writer.writerow(['Validation', valid_count['plato'], valid_count['xenophon'], max(valid_count['plato'] / len(authors_valid), 1 - (valid_count['plato'] / len(authors_valid)))])
+            csv_writer.writerow(['Test', test_count['plato'], test_count['xenophon'], max(test_count['plato'] / len(authors_test), 1 - (test_count['plato'] / len(authors_test)))])
+            csv_writer.writerow(['Apology', apologies_count['plato'], apologies_count['xenophon'], max(apologies_count['plato'] / len(authors_apology), 1 - (apologies_count['plato'] / len(authors_apology)))])
+            csv_writer.writerow(['Total', total_count['plato'], total_count['xenophon'], max(total_count['plato'] / len(authors + authors_apology), 1 - (total_count['plato'] / len(authors + authors_apology)))])
 
         sentences_apology, authors_apology = shuffle(sentences_apology, authors_apology)
 

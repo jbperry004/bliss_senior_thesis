@@ -1,5 +1,9 @@
 from load_texts import TextLoader
 from base_classifier import BaseClassifier
+import os
+
+os.environ['WANDB_MODE'] = 'dryrun'
+
 
 print("Pre-processing...")
 TextLoader().load_texts()
@@ -19,5 +23,8 @@ TextLoader().load_texts()
 # print("Evaluating Byte Pair Encoding...")
 # bytepair_classifier = BaseClassifier(method="encoded_labeled", batch_size=64, learning_rate=0.0001, epochs=15, embedding_size=64, hidden_size=32)
 # bytepair_classifier.run_bootstrap(10)
+
+# print("Calculating Statistical Signifiance")
+# calculate_significance()
 
 

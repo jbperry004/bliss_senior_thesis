@@ -5,17 +5,41 @@ import numpy as np
 from rnn import LSTMClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 import csv
+from sklearn.feature_extraction.text import TfidfVectorizer
+from cltk.stop.greek.stops import STOPS_LIST
+from greek_accentuation.characters import strip_accents
+
+DOCUMENT_PATH = "./data/authors/"
+DOCUMENT_PATH_LEMMA = "./data/authors_lemma/"
+
+method_dict = {
+    "plaintext": "Plaintext",
+    "lemma": "Lemmatization",
+    "lemma_concat": ""
+}
 
 class BaseClassifier():
-    def __init__(self, batch_size=32, embedding_size=64, hidden_size=32, method="plaintext", experiment=f"runs/original", epochs=10, learning_rate=0.0001):
+    def __init__(self, batch_size=32, embedding_size=64, hidden_size=32, method="plaintext", experiment=f"runs/original", epochs=10, learning_rate=0.0001, level_tfidf=False):
         self.bsz = batch_size
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         self.method = method
-        print(self.method)
 
-        self.TEXT = tt.data.Field(sequential=True, include_lengths=True)
+        pipeline = None
+        if level_tfidf:
+            important_words = self.calculate_top_tfidf_words()
+
+            def preprocess(token):
+                if token in important_words:
+                    return '<imp>'
+                return token
+
+            pipeline = tt.data.Pipeline(preprocess)
+
+        self.TEXT = tt.data.Field(sequential=True, include_lengths=True, preprocessing=pipeline)
         self.LABEL = tt.data.Field(sequential=False, unk_token=None)
+
+        
 
         self.train, self.val, self.test = tt.data.TabularDataset.splits(
                 path='./data/',
@@ -24,7 +48,7 @@ class BaseClassifier():
                 validation=f"greek_corpus_valid_{self.method}.csv", 
                 test=f"greek_corpus_test_{self.method}.csv",
                 fields=[('text', self.TEXT), ('label', self.LABEL)],
-                csv_reader_params={'delimiter':'\t'},
+                csv_reader_params={'delimiter':'\t'}
                 )
         
 
@@ -60,6 +84,54 @@ class BaseClassifier():
         self.epochs = epochs
         self.experiment = experiment
 
+    def calculate_top_tfidf_words(self):
+        top_words = set()
+        if self.method in ['plaintext', 'lemma_concat']:
+            tfidf = TfidfVectorizer(
+                input="filename",
+                lowercase=False,
+                stop_words=list(map(strip_accents, STOPS_LIST)),
+                max_df=0.10
+            )
+        
+            scores = tfidf.fit_transform(list(map(lambda x: os.path.join(DOCUMENT_PATH, x), os.listdir(DOCUMENT_PATH))))
+            words = tfidf.get_feature_names()
+
+            top_words.update(np.array(words)[(scores > 0.10).toarray().any(axis=0)])
+        
+        if self.method in ['lemma', 'lemma_concat']:
+            tfidf_lemma = TfidfVectorizer(
+                input="filename",
+                lowercase=False,
+                stop_words=list(map(strip_accents, STOPS_LIST)),
+                max_df=0.20
+            )
+        
+            scores_lemma = tfidf_lemma.fit_transform(list(map(lambda x: os.path.join(DOCUMENT_PATH_LEMMA, x), os.listdir(DOCUMENT_PATH_LEMMA))))
+            words_lemma = tfidf_lemma.get_feature_names()
+
+            top_words.update(np.array(words_lemma)[(scores_lemma > 0.15).toarray().any(axis=0)])
+
+        if self.method in ['encoded_labeled']:
+            tfidf = TfidfVectorizer(
+                lowercase=False,
+                stop_words=list(map(strip_accents, STOPS_LIST)),
+                max_df=0.5
+            )
+
+            byte_pair = pd.read_csv('./data/greek_corpus_train_encoded_labeled.csv', names=['sentence', 'author'], delimiter='\t')
+            plato = byte_pair[byte_pair['author'] == 'plato']['sentence']
+            xenophon = byte_pair[byte_pair['author'] == 'xenophon']['sentence']
+
+            scores_encoded = tfidf.fit_transform([' '.join(plato), ' '.join(xenophon)])
+            words_encoded = tfidf.get_feature_names()
+
+            top_words.update(np.array(words_encoded)[(X > 0).toarray().any(axis=0)])
+
+            print(filtered)
+        
+        return list(top_words)
+
     def run_bootstrap(self, num_bootstraps):
         train_accs = []
         test_accs = []
@@ -93,12 +165,12 @@ class BaseClassifier():
 
         with open(f'./results/{self.method}_results.csv', 'w') as results_csv:
             writer = csv.writer(results_csv)
-            writer.writerow(["Bootstrap", "Train_acc", "Test_acc", "Apology_acc"])
+            writer.writerow(["Bootstrap", "Train Accuracy", "Test Accuracy", "Apology Accuracy"])
             for i, (train, test, apology) in enumerate(zip(train_accs, test_accs, apology_accs)):
                 writer.writerow([i, train, test, apology])
 
         with open('./results/bootstrap_results.csv', 'a') as results_csv:
             writer = csv.writer(results_csv)
             if self.method == "plaintext":
-                writer.writerow(["Model_type", "Train_acc_mean", "Train_acc_std", "Test_acc_mean", "Test_acc_std", "Apology_acc_mean", "Apology_acc_std"])
+                writer.writerow(["Model Type", "Train Accuracy Mean", "Train Accuracy Standard Deviation", "Test Accuracy Mean", "Test Accuracy Standard Deviation", "Apology Accuracy Mean", "Apology Accuracy Standard Deviation"])
             writer.writerow([self.method, train_accs.mean(), train_accs.std(), test_accs.mean(), test_accs.std(), apology_accs.mean(), apology_accs.std()])

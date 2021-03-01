@@ -1,3 +1,0 @@
-python classifier_encoding.py
-python classifier_lemma.py
-python classifier_lemma_concat.py
